@@ -57,8 +57,31 @@ def main():
         workflow["540"]["inputs"]["seed"] = seed
         
     # Update prompt (Node 135)
+    # Update prompt (Node 135)
     if "135" in workflow:
         workflow["135"]["inputs"]["positive_prompt"] = prompt_text
+        
+    # Optimization: Reduce resolution and frame count for faster testing
+    width = 384  # Reduced from 480 (must be multiple of 16)
+    height = 640 # Reduced from 832 (must be multiple of 16)
+    frames = 33  # Reduced from 81
+    
+    print(f"  - Setting Resolution: {width}x{height}")
+    print(f"  - Setting Frames: {frames}")
+    
+    # Width (Node 235)
+    if "235" in workflow:
+        workflow["235"]["inputs"]["value"] = width
+    # Height (Node 236)
+    if "236" in workflow:
+        workflow["236"]["inputs"]["value"] = height
+        
+    # Frame Count (Node 541 - ImageToVideoEncode)
+    if "541" in workflow:
+        workflow["541"]["inputs"]["num_frames"] = frames
+    # Context Frames (Node 498 - ContextOptions)
+    if "498" in workflow:
+        workflow["498"]["inputs"]["context_frames"] = frames
         
     # Prepare inputs
     image_path = "./example_image.png"
@@ -88,7 +111,7 @@ def main():
     )
 
     if result.get('status') == 'COMPLETED':
-        output_file = "test_workflow_output.mp4"
+        output_file = "./test_workflow_output.mp4"
         print(f"  - Job completed successfully!")
         
         # Determine output filename from result if possible, or just save the first video
