@@ -82,8 +82,13 @@ class GenerateVideoClient:
         payload = {"input": input_data}
         
         try:
+            # Create a copy for logging to avoid modifying original data
+            log_input = input_data.copy()
+            if "image_base64" in log_input:
+                log_input["image_base64"] = log_input["image_base64"][:50] + "...(truncated)"
+            
             logger.info(f"Submitting job to RunPod: {self.runpod_api_endpoint}")
-            logger.info(f"Input data: {json.dumps(input_data, indent=2, ensure_ascii=False)}")
+            logger.info(f"Input data: {json.dumps(log_input, indent=2, ensure_ascii=False)}")
             
             response = self.session.post(self.runpod_api_endpoint, json=payload, timeout=30)
             response.raise_for_status()
@@ -180,6 +185,16 @@ class GenerateVideoClient:
             output = result.get('output', {})
             video_b64 = output.get('video')
             
+            # Helper: Check deep nested outputs if standard video key is missing
+            if not video_b64 and 'outputs' in output:
+                outputs = output['outputs']
+                for node_id, node_output in outputs.items():
+                    if isinstance(node_output, list) and len(node_output) > 0:
+                        # Assume the first valid output is the video
+                        video_b64 = node_output[0]
+                        logger.info(f"Found video in custom workflow output (Node: {node_id})")
+                        break
+
             if not video_b64:
                 logger.error("Video data not found")
                 return False
@@ -399,6 +414,36 @@ class GenerateVideoClient:
         
         logger.info(f"\n🎉 Batch processing completed: {results['successful']}/{results['total_files']} successful")
         return results
+
+    def run_custom_workflow(
+        self,
+        workflow: Dict[str, Any],
+        images_input: Optional[List[Dict[str, str]]] = None
+    ) -> Dict[str, Any]:
+        """
+        Run a custom ComfyUI workflow
+        
+        Args:
+            workflow: ComfyUI workflow JSON object
+            images_input: List of input images [{"name": "filename.png", "image": "base64_string"}, ...]
+        
+        Returns:
+            Job result dictionary
+        """
+        input_data = {
+            "workflow": workflow
+        }
+        
+        if images_input:
+            input_data["images"] = images_input
+            
+        # Submit job and wait
+        job_id = self.submit_job(input_data)
+        if not job_id:
+            return {"error": "Job submission failed"}
+        
+        result = self.wait_for_completion(job_id)
+        return result
 
 
 def main():

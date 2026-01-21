@@ -16,7 +16,8 @@
   "129": {
     "inputs": {
       "model_name": "Wan2_1_VAE_bf16.safetensors",
-      "precision": "bf16"
+      "precision": "bf16",
+      "use_cpu_cache": false
     },
     "class_type": "WanVideoVAELoader",
     "_meta": {
@@ -112,7 +113,6 @@
       "crop_position": "center",
       "divisible_by": 2,
       "device": "cpu",
-      "per_batch": 0,
       "image": [
         "244",
         0
@@ -134,13 +134,13 @@
   },
   "193": {
     "inputs": {
-      "strength_1": 1.0000000000000002,
+      "strength_1": 1,
       "strength_2": 1,
       "crop": "center",
       "combine_embeds": "average",
       "force_offload": true,
       "tiles": 0,
-      "ratio": 0.5000000000000001,
+      "ratio": 0.5,
       "clip_vision": [
         "173",
         0
@@ -165,7 +165,7 @@
         "570",
         0
       ],
-      "shift": 9.000000000000002,
+      "shift": 9,
       "seed": 903379117355889,
       "force_offload": true,
       "scheduler": "dpm++_sde",
@@ -237,9 +237,9 @@
       "lora_2": "none",
       "strength_2": 0.8,
       "lora_3": "none",
-      "strength_3": 1.0000000000000002,
+      "strength_3": 1,
       "lora_4": "none",
-      "strength_4": 1.0000000000000002,
+      "strength_4": 1,
       "low_mem_load": false,
       "merge_loras": false
     },
@@ -288,8 +288,8 @@
         "569",
         0
       ],
-      "cfg": 1.0000000000000002,
-      "shift": 9.000000000000002,
+      "cfg": 1,
+      "shift": 9,
       "seed": 391376475114947,
       "force_offload": true,
       "scheduler": "dpm++_sde",
@@ -339,13 +339,14 @@
         "236",
         0
       ],
-      "num_frames": 241,
+      "num_frames": 81,
       "noise_aug_strength": 0,
       "start_latent_strength": 1,
       "end_latent_strength": 1,
       "force_offload": true,
       "fun_or_fl2v_model": false,
       "tiled_vae": false,
+      "augment_empty_frames": 0,
       "vae": [
         "129",
         0
