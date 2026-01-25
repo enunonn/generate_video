@@ -74,21 +74,21 @@ RUN cd /ComfyUI/custom_nodes && \
     cd ComfyUI-AdaptiveWindowSize/ComfyUI-AdaptiveWindowSize && \
     mv * ../
 
-RUN wget -q https://docs.google.com/uc?export=download&id=1piJLyhouuxK3m2DVvdFpTxEZbXb3SNKa -O /ComfyUI/models/diffusion_models/DaSiWa_WAN_2_2_I2V_14B_LOW_fp8_e4m3fn_scaled.safetensors
-RUN wget -q https://docs.google.com/uc?export=download&id=1N2RzoqYSwOo_TUZ2EOTRUcHFn9AgNYAX -O /ComfyUI/models/diffusion_models/Smooth_Mix_Wan_2_2_14B_HIGH_fp8_e4m3fn_scaled.safetensors
+RUN wget -q "https://docs.google.com/uc?export=download&id=1piJLyhouuxK3m2DVvdFpTxEZbXb3SNKa" -o /ComfyUI/models/diffusion_models/DaSiWa_WAN_2_2_I2V_14B_LOW_fp8_e4m3fn_scaled.safetensors
+RUN wget -q "https://docs.google.com/uc?export=download&id=1N2RzoqYSwOo_TUZ2EOTRUcHFn9AgNYAX" -o /ComfyUI/models/diffusion_models/Smooth_Mix_Wan_2_2_14B_HIGH_fp8_e4m3fn_scaled.safetensors
 
 
-RUN wget -q https://huggingface.co/Comfy-Org/Wan_2.1_ComfyUI_repackaged/resolve/main/split_files/clip_vision/clip_vision_h.safetensors -O /ComfyUI/models/clip_vision/clip_vision_h.safetensors
-RUN wget -q https://huggingface.co/Kijai/WanVideo_comfy/resolve/main/umt5-xxl-enc-bf16.safetensors -O /ComfyUI/models/text_encoders/umt5-xxl-enc-bf16.safetensors
-RUN wget -q https://huggingface.co/Kijai/WanVideo_comfy/resolve/main/Wan2_1_VAE_bf16.safetensors -O /ComfyUI/models/vae/Wan2_1_VAE_bf16.safetensors
+RUN wget -q "https://huggingface.co/Comfy-Org/Wan_2.1_ComfyUI_repackaged/resolve/main/split_files/clip_vision/clip_vision_h.safetensors" -o /ComfyUI/models/clip_vision/clip_vision_h.safetensors
+RUN wget -q "https://huggingface.co/Kijai/WanVideo_comfy/resolve/main/umt5-xxl-enc-bf16.safetensors" -o /ComfyUI/models/text_encoders/umt5-xxl-enc-bf16.safetensors
+RUN wget -q "https://huggingface.co/Kijai/WanVideo_comfy/resolve/main/Wan2_1_VAE_bf16.safetensors" -o /ComfyUI/models/vae/Wan2_1_VAE_bf16.safetensors
 
 
-RUN wget -q https://huggingface.co/Kijai/WanVideo_comfy/resolve/main/LoRAs/Stable-Video-Infinity/v2.0/SVI_v2_PRO_Wan2.2-I2V-A14B_HIGH_lora_rank_128_fp16.safetensors -O /ComfyUI/models/loras/SVI_v2_PRO_Wan2.2-I2V-A14B_HIGH_lora_rank_128_fp16.safetensors
-RUN wget -q https://huggingface.co/Kijai/WanVideo_comfy/resolve/main/LoRAs/Stable-Video-Infinity/v2.0/SVI_v2_PRO_Wan2.2-I2V-A14B_LOW_lora_rank_128_fp16.safetensors -O /ComfyUI/models/loras/SVI_v2_PRO_Wan2.2-I2V-A14B_LOW_lora_rank_128_fp16.safetensors
+RUN wget -q "https://huggingface.co/Kijai/WanVideo_comfy/resolve/main/LoRAs/Stable-Video-Infinity/v2.0/SVI_v2_PRO_Wan2.2-I2V-A14B_HIGH_lora_rank_128_fp16.safetensors" -o /ComfyUI/models/loras/SVI_v2_PRO_Wan2.2-I2V-A14B_HIGH_lora_rank_128_fp16.safetensors
+RUN wget -q "https://huggingface.co/Kijai/WanVideo_comfy/resolve/main/LoRAs/Stable-Video-Infinity/v2.0/SVI_v2_PRO_Wan2.2-I2V-A14B_LOW_lora_rank_128_fp16.safetensors" -o /ComfyUI/models/loras/SVI_v2_PRO_Wan2.2-I2V-A14B_LOW_lora_rank_128_fp16.safetensors
 
-RUN wget -q https://docs.google.com/uc?export=download&id=1Gkv5brhqrqMc9FMV5RWUAwbwR3mVI0nx -O /ComfyUI/models/loras/WAN_3D_Face_high_low.safetensors
-RUN wget -q https://docs.google.com/uc?export=download&id=1m1rym9ivP9s_dxsDT64-sOBwmkM6tSdI -O /ComfyUI/models/loras/Wan22-I2V-HIGH-Hip_Slammin_Assertive_Cowgirl.safetensors
-RUN wget -q https://docs.google.com/uc?export=download&id=1xX_jEgpaEnrD-QnfRfgS90sBIHrlMFyU -O /ComfyUI/models/loras/Wan22-I2V-LOW-Hip_Slammin_Assertive_Cowgirl.safetensors
+RUN wget -q "https://docs.google.com/uc?export=download&id=1Gkv5brhqrqMc9FMV5RWUAwbwR3mVI0nx" -o /ComfyUI/models/loras/WAN_3D_Face_high_low.safetensors
+RUN wget -q "https://docs.google.com/uc?export=download&id=1m1rym9ivP9s_dxsDT64-sOBwmkM6tSdI" -o /ComfyUI/models/loras/Wan22-I2V-HIGH-Hip_Slammin_Assertive_Cowgirl.safetensors
+RUN wget -q "https://docs.google.com/uc?export=download&id=1xX_jEgpaEnrD-QnfRfgS90sBIHrlMFyU" -o /ComfyUI/models/loras/Wan22-I2V-LOW-Hip_Slammin_Assertive_Cowgirl.safetensors
 
 
 COPY . .
