@@ -72,8 +72,8 @@ RUN cd /ComfyUI/custom_nodes && \
     cd ComfyUI-AdaptiveWindowSize/ComfyUI-AdaptiveWindowSize && \
     mv * ../
 
-RUN wget -q "https://civitai.com/api/download/models/2555652?type=Model&format=SafeTensor&size=full&fp=fp8${CIVITAI_ACCESS_TOKEN}" -O /ComfyUI/models/diffusion_models/DaSiWa_WAN_2_2_I2V_14B_LOW_fp8_e4m3fn_scaled.safetensors
-RUN wget -q "https://civitai.com/api/download/models/2260110?type=Model&format=SafeTensor&size=pruned&fp=fp8${CIVITAI_ACCESS_TOKEN}" -O /ComfyUI/models/diffusion_models/Smooth_Mix_Wan_2_2_14B_HIGH_fp8_e4m3fn_scaled.safetensors
+RUN wget -q "https://civitai.com/api/download/models/2555652?type=Model&format=SafeTensor&size=full&fp=fp8&token=${CIVITAI_ACCESS_TOKEN}" -O /ComfyUI/models/diffusion_models/DaSiWa_WAN_2_2_I2V_14B_LOW_fp8_e4m3fn_scaled.safetensors
+RUN wget -q "https://civitai.com/api/download/models/2260110?type=Model&format=SafeTensor&size=pruned&fp=fp8&token=${CIVITAI_ACCESS_TOKEN}" -O /ComfyUI/models/diffusion_models/Smooth_Mix_Wan_2_2_14B_HIGH_fp8_e4m3fn_scaled.safetensors
 
 
 RUN wget -q https://huggingface.co/Comfy-Org/Wan_2.1_ComfyUI_repackaged/resolve/main/split_files/clip_vision/clip_vision_h.safetensors -O /ComfyUI/models/clip_vision/clip_vision_h.safetensors
