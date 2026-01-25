@@ -15,7 +15,7 @@ RUN cd /ComfyUI/custom_nodes && \
     git clone https://github.com/Comfy-Org/ComfyUI-Manager.git && \
     cd ComfyUI-Manager && \
     pip install -r requirements.txt
-    
+
 RUN cd /ComfyUI/custom_nodes && \
     git clone https://github.com/city96/ComfyUI-GGUF && \
     cd ComfyUI-GGUF && \
@@ -30,12 +30,12 @@ RUN cd /ComfyUI/custom_nodes && \
     git clone https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite && \
     cd ComfyUI-VideoHelperSuite && \
     pip install -r requirements.txt
-    
+
 RUN cd /ComfyUI/custom_nodes && \
     git clone https://github.com/kael558/ComfyUI-GGUF-FantasyTalking && \
     cd ComfyUI-GGUF-FantasyTalking && \
     pip install -r requirements.txt
-    
+
 RUN cd /ComfyUI/custom_nodes && \
     git clone https://github.com/orssorbit/ComfyUI-wanBlockswap
 
@@ -44,19 +44,39 @@ RUN cd /ComfyUI/custom_nodes && \
     cd ComfyUI-WanVideoWrapper && \
     pip install -r requirements.txt
 
-    
 RUN cd /ComfyUI/custom_nodes && \
+    git clone https://github.com/rgthree/rgthree-comfy.git && \
+    cd rgthree-comfy && \
+    pip install -r requirements.txt
+
+RUN cd /ComfyUI/custom_nodes && \
+    git clone https://github.com/yolain/ComfyUI-Easy-Use.git && \
+    cd ComfyUI-Easy-Use && \
+    pip install -r requirements.txt
+
+RUN cd /ComfyUI/custom_nodes && \
+    git clone https://github.com/ltdrdata/was-node-suite-comfyui.git && \
+    cd was-node-suite-comfyui && \
+    pip install -r requirements.txt
+
+RUN cd /ComfyUI/custom_nodes && \
+    git clone https://github.com/PGCRT/CRT-Nodes.git && \
+    cd CRT-Nodes && \
+    pip install -r requirements.txt
+
+RUN cd /ComfyUI/custom_nodes && \
+    git clone https://github.com/royceschultz/ComfyUI-Notifications.git && \
+
+    RUN cd /ComfyUI/custom_nodes && \
     git clone https://github.com/eddyhhlure1Eddy/IntelligentVRAMNode && \
     git clone https://github.com/eddyhhlure1Eddy/auto_wan2.2animate_freamtowindow_server && \
     git clone https://github.com/eddyhhlure1Eddy/ComfyUI-AdaptiveWindowSize && \
     cd ComfyUI-AdaptiveWindowSize/ComfyUI-AdaptiveWindowSize && \
     mv * ../
 
-RUN wget -q https://huggingface.co/Kijai/WanVideo_comfy_fp8_scaled/resolve/main/I2V/Wan2_2-I2V-A14B-HIGH_fp8_e4m3fn_scaled_KJ.safetensors -O /ComfyUI/models/diffusion_models/Wan2_2-I2V-A14B-HIGH_fp8_e4m3fn_scaled_KJ.safetensors
-RUN wget -q https://huggingface.co/Kijai/WanVideo_comfy_fp8_scaled/resolve/main/I2V/Wan2_2-I2V-A14B-LOW_fp8_e4m3fn_scaled_KJ.safetensors -O /ComfyUI/models/diffusion_models/Wan2_2-I2V-A14B-LOW_fp8_e4m3fn_scaled_KJ.safetensors
+RUN wget -q "https://civitai.com/api/download/models/2555652?type=Model&format=SafeTensor&size=full&fp=fp8${CIVITAI_ACCESS_TOKEN}" -O /ComfyUI/models/diffusion_models/DaSiWa_WAN_2_2_I2V_14B_LOW_fp8_e4m3fn_scaled.safetensors
+RUN wget -q "https://civitai.com/api/download/models/2260110?type=Model&format=SafeTensor&size=pruned&fp=fp8${CIVITAI_ACCESS_TOKEN}" -O /ComfyUI/models/diffusion_models/Smooth_Mix_Wan_2_2_14B_HIGH_fp8_e4m3fn_scaled.safetensors
 
-RUN wget -q https://huggingface.co/lightx2v/Wan2.2-Lightning/resolve/main/Wan2.2-I2V-A14B-4steps-lora-rank64-Seko-V1/high_noise_model.safetensors -O /ComfyUI/models/loras/high_noise_model.safetensors
-RUN wget -q https://huggingface.co/lightx2v/Wan2.2-Lightning/resolve/main/Wan2.2-I2V-A14B-4steps-lora-rank64-Seko-V1/low_noise_model.safetensors -O /ComfyUI/models/loras/low_noise_model.safetensors
 
 RUN wget -q https://huggingface.co/Comfy-Org/Wan_2.1_ComfyUI_repackaged/resolve/main/split_files/clip_vision/clip_vision_h.safetensors -O /ComfyUI/models/clip_vision/clip_vision_h.safetensors
 RUN wget -q https://huggingface.co/Kijai/WanVideo_comfy/resolve/main/umt5-xxl-enc-bf16.safetensors -O /ComfyUI/models/text_encoders/umt5-xxl-enc-bf16.safetensors
