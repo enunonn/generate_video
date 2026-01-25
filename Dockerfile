@@ -66,8 +66,6 @@ RUN cd /ComfyUI/custom_nodes && \
 
 RUN cd /ComfyUI/custom_nodes && \
     git clone https://github.com/royceschultz/ComfyUI-Notifications.git && \
-
-    RUN cd /ComfyUI/custom_nodes && \
     git clone https://github.com/eddyhhlure1Eddy/IntelligentVRAMNode && \
     git clone https://github.com/eddyhhlure1Eddy/auto_wan2.2animate_freamtowindow_server && \
     git clone https://github.com/eddyhhlure1Eddy/ComfyUI-AdaptiveWindowSize && \
