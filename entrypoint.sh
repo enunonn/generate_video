@@ -3,6 +3,24 @@
 # Exit immediately if a command exits with a non-zero status.
 set -e
 
+# Ensure network volume checkpoints dir exists
+CHECKPOINTS_DIR="/runpod-volume/checkpoints"
+LTX_CHECKPOINT="${CHECKPOINTS_DIR}/ltx-2-19b-dev-fp8.safetensors"
+LTX_URL="https://huggingface.co/Lightricks/LTX-2/resolve/main/ltx-2-19b-dev-fp8.safetensors"
+
+if [ ! -d "$CHECKPOINTS_DIR" ]; then
+    echo "Creating checkpoints dir: $CHECKPOINTS_DIR"
+    mkdir -p "$CHECKPOINTS_DIR"
+fi
+
+if [ ! -f "$LTX_CHECKPOINT" ]; then
+    echo "ltx-2-19b-dev-fp8.safetensors not found in $CHECKPOINTS_DIR, downloading..."
+    wget -q "$LTX_URL" -O "$LTX_CHECKPOINT"
+    echo "Download complete: $LTX_CHECKPOINT"
+else
+    echo "ltx-2-19b-dev-fp8.safetensors already exists in $CHECKPOINTS_DIR"
+fi
+
 # Start ComfyUI in the background
 echo "Starting ComfyUI in the background..."
 python /ComfyUI/main.py --listen --use-sage-attention &
