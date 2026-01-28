@@ -281,6 +281,25 @@ If the job fails, it returns a JSON object containing an error message.
 1.  Create a Serverless Endpoint on RunPod based on this repository.
 2.  Once the build is complete and the endpoint is active, submit jobs via HTTP POST requests according to the API Reference above.
 
+### 🔁 API Test Script (CLI)
+
+For a quick end-to-end test (image → video) without writing code, you can use the bundled CLI script.
+
+- Input image: `generate_video/examples/input/test_input.png`
+- Output video: `generate_video/examples/output/out_test.mp4` (default)
+
+Set `runpod_API_KEY` and `generate_video` (endpoint ID) in the project root `test.env` or copy `generate_video/.env.example` and fill in your values.
+
+```bash
+# Basic test (uses local example image, generate_video_client under the hood)
+python generate_video/test_api.py
+
+# Custom input / output paths
+python generate_video/test_api.py \
+  --image-file generate_video/examples/input/test_input.png \
+  --output-file generate_video/examples/output/custom_video.mp4
+```
+
 ### 📁 Using Network Volumes
 
 Instead of directly transmitting Base64 encoded files, you can use RunPod's Network Volumes to handle large files. This is especially useful when dealing with large image files and LoRA models.

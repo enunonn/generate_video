@@ -281,6 +281,25 @@ print(f"배치 처리 완료: {batch_result['successful']}/{batch_result['total_
 1.  이 저장소를 기반으로 RunPod에서 Serverless Endpoint를 생성합니다.
 2.  빌드가 완료되고 엔드포인트가 활성화되면 위의 API 참조에 따라 HTTP POST 요청을 통해 작업을 제출합니다.
 
+### 🔁 API 테스트 스크립트 (CLI)
+
+코드를 따로 작성하지 않고 **이미지 → 비디오** 워크플로우를 한 번에 테스트하고 싶다면, 동봉된 CLI 스크립트를 사용할 수 있습니다.
+
+- 입력 이미지: `generate_video/examples/input/test_input.png`
+- 출력 비디오: `generate_video/examples/output/out_test.mp4` (기본값)
+
+프로젝트 루트의 `test.env` 또는 `.env`에 `runpod_API_KEY`와 `generate_video`(엔드포인트 ID)를 설정하거나, `generate_video/.env.example`을 복사해서 값을 채워주세요.
+
+```bash
+# 기본 테스트 (로컬 예제 이미지를 사용, 내부적으로 generate_video_client 사용)
+python generate_video/test_api.py
+
+# 입력/출력 경로를 직접 지정
+python generate_video/test_api.py \
+  --image-file generate_video/examples/input/test_input.png \
+  --output-file generate_video/examples/output/custom_video.mp4
+```
+
 ### 📁 네트워크 볼륨 사용
 
 Base64로 인코딩된 파일을 직접 전송하는 대신 RunPod의 Network Volumes를 사용하여 대용량 파일을 처리할 수 있습니다. 이는 특히 대용량 이미지 파일과 LoRA 모델을 다룰 때 유용합니다.
